@@ -29,6 +29,27 @@ app.post("/categories", async (req, res) => {
     res.status(201).json(category);
 });
 
+// Delete a Category by its ID
+app.delete("/categories/:id", async (req,res) => {
+    const categoryID = req.params.id;
+    const category = await Category.findByPk(categoryID);
+    if (!category){
+        return res.sendStatus(400);
+    }
+    await category.destroy();
+    res.sendStatus(200);
+});
+
+// Replace a Category by its ID
+app.put("/categories/:id", async (req,res) => {
+    const categoryID = req.params.id;
+    const category = await Category.findByPk(categoryID);
+    if (!category){
+        return res.sendStatus(400);
+    }
+    await category.update(req.body);
+    res.status(200).json(category);
+});
 
 setupDb();
 
