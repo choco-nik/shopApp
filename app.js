@@ -6,7 +6,21 @@ const Item = require("./models/itemInfo");
 const app = express();
 app.use(express.json());
 
-// Get 
+// Get all the categories
+app.get("/categories", async (req,res) => {
+    const categories = await Category.findAll();
+    res.json(categories);
+});
+
+//Get a category by its ID
+app.get("/categories/:id", async (req,res) => {
+    const categoryID = req.params.id;
+    const category = await Category.findByPk(categoryID);
+    if (!category){
+        return res.sendStatus(404)
+    }
+    res.status(200).json(category);
+});
 
 // Create a Category
 app.post("/categories", async (req, res) => {
