@@ -1,1 +1,51 @@
 some text
+
+Home Items 
+
+   const print = await Category.create({category:"Prints"});
+    print.createItem({
+        title: "Palm Print",
+        imageUrl: "http://cdn.shopify.com/s/files/1/0421/2625/products/TheDen_Now_PalmLeafRetroArtPrint_Lifestyle.jpg?v=1596092827",
+        price: 35.00, 
+        description:"Palm print using hand-painting and digital designing"
+    });
+
+    const card = await Category.create({category:"Cards"});
+    card.createItem({
+        title: "Palm Tree Print Card ",
+        imageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOq5KR7qIrhGqyf32hehY_2xGM_XorEg3oig&usqp=CAU",
+        price: 3.00, 
+        description:"A6 card- Measurements 10x15cm"
+    });
+
+    const notebook = await Category.create({category:"Notebooks"});
+    notebook.createItem({
+        title: "A5 Palm Tree Notebooks ",
+        imageUrl: "https://mybookmoment.com/wp-content/uploads/2021/06/palm-print-notebook.png",
+        price: 6.99, 
+        description:"A5 lined printed and gold foiled notebooks"
+    }); 
+
+    const bedsheet = await Category.create({category:"Bedsheets"});
+    bedsheet.createItem({
+        title: "Palm Tree Duvet Covers",
+        imageUrl: "https://images.dunelm.com/30714649.jpg?$standardplayerdefault$&img404=noimagedefault",
+        price: 40.00, 
+        description:"Palm tree design, this bedding set is perfect for adding a touch of modern nature to your bedroom"
+    });
+
+    const lamp = await Category.create({category:"Lamp"});
+    lamp.createItem({
+        title: "Palm Tree Table Lamp",
+        imageUrl: "https://shop.simiglighting.com/wp-content/uploads/2021/04/O1CN01KsZCnX1amQ3Ffb1op_3152273372-600x600.jpg",
+        price: 35.00, 
+        description:"Retro gold palm tree table lamp"
+    });
+
+    const cushion= await Category.create({category:"Cusiobs"});
+    cushion.createItem({
+        title: "Palm Tree Cushion",
+        imageUrl: "https://kaleidoscope.scene7.com/is/image/OttoUK/553w/Velvet-Palm-Tree-Cushions~81W696FRSP_COL_GREEN.jpg",
+        price: 20.00, 
+        description:"Classic design cushion with exotic palm trees. Dimensions approx. 45 x 45 cm"
+    });
