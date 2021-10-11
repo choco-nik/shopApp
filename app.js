@@ -9,11 +9,12 @@ app.use(express.json());
 // Get 
 
 // Create a Category
-app.post("/categories", async (res,req) => {
+app.post("/categories", async (req, res) => {
     const { title } = req.body;
-    const category = await Category.create({title});
+    const category = await Category.create({ title });
     res.status(201).json(category);
 });
+
 
 setupDb();
 
