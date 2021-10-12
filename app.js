@@ -2,23 +2,38 @@ const express = require("express");
 const setupDb = require("./db/setupDb");
 const Category = require("./models/category");
 const Item = require("./models/itemInfo");
+const path = require("path");
 const Handlebars = require("handlebars");
 const expressHandlebars = require("express-handlebars");
 const {
     allowInsecurePrototypeAccess,
   } = require("@handlebars/allow-prototype-access");
+  
 const app = express();
 app.use(express.json());
 
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 
-// Get all the categories
-app.get("/categories", async (req,res) => {
-    const categories = await Category.findAll();
-    res.json(categories);
+const handlebars = expressHandlebars({
+    handlebars: allowInsecurePrototypeAccess(Handlebars),
 });
 
+app.engine("handlebars", handlebars);
+  app.set("view engine", "handlebars");
+  app.set('views', path.join(__dirname, 'views'));
+
+// Get all the categories Postman
+//app.get("/categories", async (req,res) => {
+    //const categories = await Category.findAll();
+    //res.json(categories);
+//});
+
+// Get for website
+app.get("/", async (req, res) => {
+    const categories = await Category.findAll();
+    res.render("home", { categories });
+});
 //Get a category by its ID
 app.get("/categories/:id", async (req,res) => {
     const categoryID = req.params.id;
