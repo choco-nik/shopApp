@@ -7,7 +7,7 @@ const app = require("./app");
 
 
 //Test to see if title ofa new category is = "Prints"
-test("Category is Prints", async() => {
+test("Category respects title argument", async() => {
     let category1 = await Category.create({
         title: "Prints"
     });
@@ -21,17 +21,12 @@ test("Item Price is more than 10 pence", async() => {
         price: 20.00,
         description: "Blouse"
     });
-    expect(item1.price).toBeGreaterThan(0.1);
+    expect(item1.price).toEqual(20);
 });
 
-test ("To find all items", async (res,req) => {
-    const categoryID = req.params.id;
-    const item2 = await Item.findByPk(categoryID);({
-        title: "Prints",
-        imageUrl: "Hyperlink",
-        price: 20.00,
-        description: "Blouse"
-    })
-    = req.body; 
+test ("To find all items", async () => {
+    const item2 = await Item.findByPk(categoryID);
     expect(item2.description).toBe("Blouse");
 });
+
+//supertest API testing if there's time
