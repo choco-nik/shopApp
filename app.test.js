@@ -24,3 +24,14 @@ test("Item Price is more than 10 pence", async() => {
     expect(item1.price).toBeGreaterThan(0.1);
 });
 
+test ("To find all items", async (res,req) => {
+    const categoryID = req.params.id;
+    const item2 = await Item.findByPk(categoryID);({
+        title: "Prints",
+        imageUrl: "Hyperlink",
+        price: 20.00,
+        description: "Blouse"
+    })
+    = req.body; 
+    expect(item2.description).toBe("Blouse");
+});
