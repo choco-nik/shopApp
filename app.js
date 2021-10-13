@@ -77,7 +77,11 @@ app.get("/sport.handlebars", async (req, res) => {
 
 // Get for Womens pages
 app.get("/womens.handlebars", async (req, res) => {
-    const item = await Item.findAll();
+    const item = await Item.findAll({
+        where:{
+            categoryId: 4
+        }
+    });
     if (!item){
         return res.sendStatus(404);
     }

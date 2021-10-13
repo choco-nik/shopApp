@@ -3,10 +3,10 @@
 <div class="vertical-menu">
    <!-- home button logo --> 
   <a href="/" id="homelink"><i class="fas fa-home" id="home-icon"></i></a>
-  <a href="#">Groceries</a>
-  <a href="#" class="active">Home</a>
-  <a href="#">Sports</a>
-  <a href="#">Women's Design</a>
+  <a href="groceries.handlebars" id="groceries-link">Groceries</a>
+  <a href="homeware.handlebars" id="homeware-link">Home</a>
+  <a href="sport.handlebars" id="sport-link">Sports</a>
+  <a href="womens.handlebars" id="womens-link">Women's Design</a>
   <!--shopping cart logo // MAKE IT LINK TO THIS PAGE-->
   <a href="cart.handlebars" id="link"><i class="fas fa-shopping-cart" id="cart-icon"></i></a>
 </div>
@@ -29,3 +29,14 @@ const cartIcon = document.getElementById("cart-icon");
 });
 
  </script>
+ {{#each item}}
+    <article>
+        <label>    
+            Name:
+            <button>
+            <span>{{this.title}}</span></button>        
+        </label>
+        <img src={{this.imageUrl}} style="width:100px;height:100px;">
+      </article>
+    
+{{/each}}
