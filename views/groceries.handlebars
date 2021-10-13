@@ -29,3 +29,14 @@ const cartIcon = document.getElementById("cart-icon");
 });
 
  </script>
+  {{#each item}}
+    <article>
+        <label>    
+            Name:
+            <button>
+            <span>{{this.title}}</span></button>        
+        </label>
+        <img src={{this.imageUrl}} style="width:100px;height:100px;">
+      </article>
+    
+{{/each}}

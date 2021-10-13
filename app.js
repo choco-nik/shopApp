@@ -46,7 +46,11 @@ app.get("/", async (req, res) => {
 
 // Get for Groceries Page 
 app.get("/groceries.handlebars", async (req, res) => {
-    const item = await Item.findAll();
+    const item = await Item.findAll({
+        where:{
+            categoryId: 1
+        }
+    });
     if (!item){
         return res.sendStatus(404);
     }
@@ -87,8 +91,6 @@ app.get("/womens.handlebars", async (req, res) => {
     }
     res.render("womens", { item });
 });
-
-
 
 //Get a category by its ID
 app.get("/categories/:id", async (req,res) => {
