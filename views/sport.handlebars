@@ -31,10 +31,10 @@ const cartIcon = document.getElementById("cart-icon");
  </script>
 {{#each item}}
     <article>
-        <label>    
-            Name:
-            <button>
+        <label>
             <span>{{this.title}}</span></button>        
         </label>
-    <br>
+        <img src={{this.imageUrl}} style="width:100px;">
+    </article>
+
 {{/each}}
