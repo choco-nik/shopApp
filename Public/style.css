@@ -129,4 +129,29 @@ th:last-child{
     text-align: right;
 }
 
+/*buy now and delete buttons*/
+.buttons{
+    text-align: right;
+}
+.btnAddRem{
+    position: relative;
+    white-space: nowrap;
+    padding: 8px;
+    font-size: 16px;
+    font-weight:500;
+    color: #fff;
+    align-items: center;
+    width: 400px;
+    height: 50px;
+    padding: 0;
+    border:none;
+    outline: none;
+    border-radius: 5px;
+    overflow:hidden;
+    cursor: pointer;
+    background: coral;
+
+}
+
+
   
