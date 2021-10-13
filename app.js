@@ -29,11 +29,21 @@ app.engine("handlebars", handlebars);
     //res.json(categories);
 //});
 
+// Get for cart
+app.get("/cart.handlebars", async (req, res) => {
+    const item = await Item.findAll();
+    if (!item){
+        return res.sendStatus(404);
+    }
+    res.render("cart", { item });
+});
+
 // Get for website
 app.get("/", async (req, res) => {
     const categories = await Category.findAll();
     res.render("home", { categories });
 });
+
 //Get a category by its ID
 app.get("/categories/:id", async (req,res) => {
     const categoryID = req.params.id;

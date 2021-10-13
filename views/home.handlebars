@@ -6,9 +6,17 @@
   <a href="#">Sports</a>
   <a href="#">Women's Design</a>
   <!--shopping cart logo // MAKE IT LINK TO CART PAGE-->
-  <i class="fas fa-shopping-cart"></i>
+  <script>
+    const cartIcon = document.getElementById("cart-icon");
+    const link = document.querySelector("link");
+    link.addEventListener("click", () => {
+      await fetch("http://localhost:4000/cart"),{
+      method: "GET"
+      }
+});
+  </script>
+  <a href="cart.handlebars" id="link"><i class="fas fa-shopping-cart" id="cart-icon"></i></a>
 </div>
-
 
 <div class = "container img-size">
   <!--groceries-->
@@ -30,11 +38,11 @@
   </a>
 </div>
 
-<div class="effect">
+<!--<div class="effect">
     <img src="https://images.dunelm.com/30714649.jpg?$standardplayerdefault$&img404=noimagedefault" class="image" alt="..." width="300" height="300">
 <div class="middle">
   </div>
-</div> 
+</div> -->
 
 
 
