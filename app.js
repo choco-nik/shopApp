@@ -53,9 +53,14 @@ app.get("/groceries.handlebars", async (req, res) => {
     res.render("groceries", { item });
 });
 
+
 // Get for Homeware pages
 app.get("/homeware.handlebars", async (req, res) => {
-    const item = await Item.findAll();
+    const item = await Item.findAll({
+        where:{
+            categoryId: 2
+        }
+    });
     if (!item){
         return res.sendStatus(404);
     }

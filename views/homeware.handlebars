@@ -27,8 +27,17 @@ const cartIcon = document.getElementById("cart-icon");
       method: "GET"
       }
 });
+</script>
 
- </script>
+{{#each item}}
+    <article>  
+            <span>{{this.title}}</span>       
+            <img src={{this.imageUrl}} id ="home-images"style= width="300" height="300">
+            <span>£{{this.price}}</span>
+            <br>
+            <span>{{this.description}}</span>
+            <br>
+{{/each}}
 
   
 
