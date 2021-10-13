@@ -30,13 +30,22 @@ const cartIcon = document.getElementById("cart-icon");
 
  </script>
  {{#each item}}
-    <article>
-        <label>    
-            Name:
-            <button>
-            <span>{{this.title}}</span></button>        
-        </label>
-        <img src={{this.imageUrl}} style="width:100px;height:100px;">
-      </article>
-    
+ <div class="containerWom">
+   <div class="cards">
+         <div class="card" style="width: 18rem;">
+      <img src={{this.imageUrl}} class="card-img-top" alt="..." style="width:18rem">
+      <div class="card-body">
+          <h4 class="card-title">{{this.title}}</h4>
+          <p class="card-text">{{this.description}}</p>
+          <p class="card-price">£{{this.price}}</p>
+          <button class="btn btn-primary">Add To Cart</button>
+      </div>
+    </div>  
+
+   </div>
+
+ </div> 
+
 {{/each}}
+
+
