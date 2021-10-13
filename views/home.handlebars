@@ -1,10 +1,10 @@
 <h1>Bit-By-Bit</h1>
      
 <div class="vertical-menu">
-  <a href="#">Groceries</a>
-  <a href="#" class="active">Home</a>
-  <a href="#">Sports</a>
-  <a href="#">Women's Design</a>
+  <a href="groceries.handlebars" id="groceries-link">Groceries</a>
+  <a href="homeware.handlebars" id="homeware-link">Home</a>
+  <a href="sport.handlebars" id="sport-link">Sports</a>
+  <a href="womens.handlebars" id="womens-link">Women's Design</a>
   <!--shopping cart logo // MAKE IT LINK TO CART PAGE-->
   <script>
     const cartIcon = document.getElementById("cart-icon");
@@ -14,7 +14,46 @@
       method: "GET"
       }
 });
-  </script>
+</script>
+<script>
+  const homeIcon = document.getElementById ("homeware-link");
+  const homeIcon = document.querySelector ("homeware-link");
+  homeIcon.addEventListener ("click", ()=> {
+    await fetch ("http://localhost:4000/homeware"),{
+      method: "GET"
+      }
+  });
+</script>
+<script>
+  const groceryIcon = document.getElementById ("groceries-link");
+  const groceryIcon = document.querySelector ("groceries-link");
+  groceryIcon.addEventListener ("click", ()=> {
+    await fetch ("http://localhost:4000/groceries"),{
+      method: "GET"
+      }
+  });
+</script>
+
+<script>
+  const sportIcon = document.getElementById ("sport-link");
+  const sportIcon = document.querySelector ("sport-link");
+  sportIcon.addEventListener ("click", ()=> {
+    await fetch ("http://localhost:4000/sport"),{
+      method: "GET"
+      }
+  });
+</script>
+
+<script>
+  const womenstIcon = document.getElementById ("womens-link");
+  const womensIcon = document.querySelector ("womens-link");
+  sportIcon.addEventListener ("click", ()=> {
+    await fetch ("http://localhost:4000/womens"),{
+      method: "GET"
+      }
+  });
+</script>
+  
   <a href="cart.handlebars" id="link"><i class="fas fa-shopping-cart" id="cart-icon"></i></a>
 </div>
 
@@ -25,7 +64,7 @@
   </a>
   <!--home-->
   <a href="homeware.handlebars">
-  <img src="https://images.dunelm.com/30714649.jpg?$standardplayerdefault$&img404=noimagedefault" class="img-thumbnail" alt="..." width="300" height="300">
+  <img src="https://images.dunelm.com/30714649.jpg?$standardplayerdefault$&img404=noimagedefault" class="img-thumbnail-home" alt="..." width="300" height="300">
   </a>
   <br>
   <!--sports-->

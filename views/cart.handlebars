@@ -2,6 +2,8 @@
 
 <!--NAV BAR STATIC-->   
 <div class="vertical-menu">
+  <!-- home button logo --> 
+  <a href="/" id="homelink"><i class="fas fa-home" id="home-icon"></i></a>
   <a href="#">Groceries</a>
   <a href="#" class="active">Home</a>
   <a href="#">Sports</a>
@@ -9,7 +11,16 @@
   <!--shopping cart logo // MAKE IT LINK TO THIS PAGE-->
   <i class="fas fa-shopping-cart"></i>
 </div>
-
+<script>
+  const homeIcon = document.getElementById("home-icon");
+    const homeLink = document.querySelector("homelink");
+    link.addEventListener("click", () => {
+      await fetch("http://localhost:4000/home"),{
+      method: "GET"
+      }
+});
+ </script>  
+</div>
 <!--shopping cart page-->
 <div class="container cart">
   <div class="small-container cart-page">

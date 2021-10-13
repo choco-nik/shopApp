@@ -62,6 +62,12 @@ a:hover {
     opacity: 1;
   }
   
+  /* STYLES FOR HOME BUTTON */ 
+
+  .home-icon{
+    padding-left: 260px;
+    padding-right: 260px;
+  }
 
   /*STYLES FOR SHOPPING CART */
   .cart{

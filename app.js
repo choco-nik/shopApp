@@ -44,6 +44,44 @@ app.get("/", async (req, res) => {
     res.render("home", { categories });
 });
 
+// Get for Groceries Page 
+app.get("/groceries.handlebars", async (req, res) => {
+    const item = await Item.findAll();
+    if (!item){
+        return res.sendStatus(404);
+    }
+    res.render("groceries", { item });
+});
+
+// Get for Homeware pages
+app.get("/homeware.handlebars", async (req, res) => {
+    const item = await Item.findAll();
+    if (!item){
+        return res.sendStatus(404);
+    }
+    res.render("homeware", { item });
+});
+
+// Get for Sport pages
+app.get("/sport.handlebars", async (req, res) => {
+    const item = await Item.findAll();
+    if (!item){
+        return res.sendStatus(404);
+    }
+    res.render("sport", { item });
+});
+
+// Get for Womens pages
+app.get("/womens.handlebars", async (req, res) => {
+    const item = await Item.findAll();
+    if (!item){
+        return res.sendStatus(404);
+    }
+    res.render("womens", { item });
+});
+
+
+
 //Get a category by its ID
 app.get("/categories/:id", async (req,res) => {
     const categoryID = req.params.id;
