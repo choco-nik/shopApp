@@ -64,7 +64,11 @@ app.get("/homeware.handlebars", async (req, res) => {
 
 // Get for Sport pages
 app.get("/sport.handlebars", async (req, res) => {
-    const item = await Item.findAll();
+    const item = await Item.findAll({
+        where:{
+            categoryId: 3
+        }
+    });
     if (!item){
         return res.sendStatus(404);
     }
