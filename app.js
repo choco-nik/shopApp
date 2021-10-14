@@ -7,8 +7,9 @@ const Handlebars = require("handlebars");
 const expressHandlebars = require("express-handlebars");
 const {
     allowInsecurePrototypeAccess,
-  } = require("@handlebars/allow-prototype-access");
-  
+} = require("@handlebars/allow-prototype-access");
+const { Op } = require("sequelize");
+
 const app = express();
 app.use(express.json());
 
@@ -20,21 +21,42 @@ const handlebars = expressHandlebars({
 });
 
 app.engine("handlebars", handlebars);
-  app.set("view engine", "handlebars");
-  app.set('views', path.join(__dirname, 'views'));
+app.set("view engine", "handlebars");
+app.set("views", path.join(__dirname, "views"));
 
 // Get all the categories Postman
 //app.get("/categories", async (req,res) => {
-    //const categories = await Category.findAll();
-    //res.json(categories);
+//const categories = await Category.findAll();
+//res.json(categories);
 //});
+
+const cart = {};
+
+app.post("/cart", (req, res) => {
+    const itemId = req.body.itemId;
+    if (cart[itemId]) {
+        cart[itemId]++;
+    } else {
+        cart[itemId] = 1;
+    }
+    res.json(cart);
+});
+
+app.get("/checkout", async (req, res) => {
+    const items = await Item.findAll({
+        where: {
+            id: {
+                [Op.or]: Object.keys(cart),
+            },
+        },
+    });
+    items.forEach((item) => (item.count = cart[item.id]));
+    console.log(items);
+    res.render("checkout", { items });
+});
 
 // Get for cart
 app.get("/cart.handlebars", async (req, res) => {
-    const item = await Item.findAll();
-    if (!item){
-        return res.sendStatus(404);
-    }
     res.render("cart", { item });
 });
 
@@ -44,28 +66,27 @@ app.get("/", async (req, res) => {
     res.render("home", { categories });
 });
 
-// Get for Groceries Page 
+// Get for Groceries Page
 app.get("/groceries.handlebars", async (req, res) => {
     const item = await Item.findAll({
-        where:{
-            categoryId: 1
-        }
+        where: {
+            categoryId: 1,
+        },
     });
-    if (!item){
+    if (!item) {
         return res.sendStatus(404);
     }
     res.render("groceries", { item });
 });
 
-
 // Get for Homeware pages
 app.get("/homeware.handlebars", async (req, res) => {
     const item = await Item.findAll({
-        where:{
-            categoryId: 2
-        }
+        where: {
+            categoryId: 2,
+        },
     });
-    if (!item){
+    if (!item) {
         return res.sendStatus(404);
     }
     res.render("homeware", { item });
@@ -74,11 +95,11 @@ app.get("/homeware.handlebars", async (req, res) => {
 // Get for Sport pages
 app.get("/sport.handlebars", async (req, res) => {
     const item = await Item.findAll({
-        where:{
-            categoryId: 3
-        }
+        where: {
+            categoryId: 3,
+        },
     });
-    if (!item){
+    if (!item) {
         return res.sendStatus(404);
     }
     res.render("sport", { item });
@@ -87,22 +108,22 @@ app.get("/sport.handlebars", async (req, res) => {
 // Get for Womens pages
 app.get("/womens.handlebars", async (req, res) => {
     const item = await Item.findAll({
-        where:{
-            categoryId: 4
-        }
+        where: {
+            categoryId: 4,
+        },
     });
-    if (!item){
+    if (!item) {
         return res.sendStatus(404);
     }
     res.render("womens", { item });
 });
 
 //Get a category by its ID
-app.get("/categories/:id", async (req,res) => {
+app.get("/categories/:id", async (req, res) => {
     const categoryID = req.params.id;
     const category = await Category.findByPk(categoryID);
-    if (!category){
-        return res.sendStatus(404)
+    if (!category) {
+        return res.sendStatus(404);
     }
     res.status(200).json(category);
 });
@@ -115,10 +136,10 @@ app.post("/categories", async (req, res) => {
 });
 
 // Delete a Category by its ID
-app.delete("/categories/:id", async (req,res) => {
+app.delete("/categories/:id", async (req, res) => {
     const categoryID = req.params.id;
     const category = await Category.findByPk(categoryID);
-    if (!category){
+    if (!category) {
         return res.sendStatus(404);
     }
     await category.destroy();
@@ -126,10 +147,10 @@ app.delete("/categories/:id", async (req,res) => {
 });
 
 // Replace a Category by its ID
-app.put("/categories/:id", async (req,res) => {
+app.put("/categories/:id", async (req, res) => {
     const categoryID = req.params.id;
     const category = await Category.findByPk(categoryID);
-    if (!category){
+    if (!category) {
         return res.sendStatus(404);
     }
     await category.update(req.body);
@@ -137,16 +158,16 @@ app.put("/categories/:id", async (req,res) => {
 });
 
 // Get all the item in a category
-app.get("/categories/:id/items", async (req,res) => {
+app.get("/categories/:id/items", async (req, res) => {
     const items = await Item.findAll();
     res.json(items);
 });
 
 // Get an item in a category
-app.get("/items/:id", async (req,res) => {
+app.get("/items/:id", async (req, res) => {
     const categoryID = req.params.id;
     const item = await Item.findByPk(categoryID);
-    if (!item){
+    if (!item) {
         return res.sendStatus(404);
     }
     res.status(200).json(item);
@@ -163,10 +184,10 @@ app.post("/categories/:id/items", async (req, res) => {
 });
 
 // Delete an item by its ID
-app.delete("/items/:id", async (req,res) => {
+app.delete("/items/:id", async (req, res) => {
     const itemID = req.params.id;
     const item = await Item.findByPk(itemID);
-    if (!item){
+    if (!item) {
         return res.sendStatus(404);
     }
     await item.destroy();
@@ -174,10 +195,10 @@ app.delete("/items/:id", async (req,res) => {
 });
 
 // Replace an item by its ID
-app.put("/items/:id", async (req,res) => {
+app.put("/items/:id", async (req, res) => {
     const categoryID = req.params.id;
     const item = await Item.findByPk(categoryID);
-    if (!item){
+    if (!item) {
         return res.sendStatus(404);
     }
     await item.update(req.body);
@@ -186,4 +207,4 @@ app.put("/items/:id", async (req,res) => {
 
 setupDb();
 //createTable();
-module.exports = app;  
+module.exports = app;
