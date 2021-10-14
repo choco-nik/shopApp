@@ -11,40 +11,53 @@
   <a href="cart.handlebars" id="link"><i class="fas fa-shopping-cart" id="cart-icon"></i></a>
 </div>
 
+<div class="container">
+  <div class="cards">
+ {{#each item}}
+      <div class="card">
+      <div class="card-body">
+          <img src={{this.imageUrl}} class="card-img-top" alt="..." style="width:18rem">
+          <h4 class="card-title">{{this.title}}</h4>
+          <p class="card-text">{{this.description}}</p>
+          <p class="card-price">£{{this.price}}</p>
+          <button item-id={{this.id}} class="btn btn-primary add">Add To Cart</button>
+      </div>
+    </div>  
+{{/each}}
+  </div>
+ </div> 
+
 <script>
   const homeIcon = document.getElementById("home-icon");
-    const homeLink = document.querySelector("homelink");
-    link.addEventListener("click", () => {
+    const homeLink = document.getElementById("homelink");
+    homeLink.addEventListener("click", async () => {
       await fetch("http://localhost:4000/home"),{
       method: "GET"
       }
 });
 
 const cartIcon = document.getElementById("cart-icon");
-    const link = document.querySelector("link");
-    link.addEventListener("click", () => {
-      await fetch("http://localhost:4000/cart"),{
-      method: "GET"
-      }
+const link = document.querySelector("link");
+link.addEventListener("click", async () => {
+  await fetch("http://localhost:4000/cart"),{
+  method: "GET"
+  }
 });
-</script>
 
-{{#each item}}
-    <article>  
-           <div class="containerHome">
-   <div class="cards">
-         <div class="card" style="width: 18rem;">
-      <img src={{this.imageUrl}} class="card-img-top" alt="..." style="width:18rem">
-      <div class="card-body">
-          <h4 class="card-title">{{this.title}}</h4>
-          <p class="card-text">{{this.description}}</p>
-          <p class="card-price">£{{this.price}}</p>
-          <button class="btn btn-primary">Add To Cart</button>
-      </div>
-    </div>  
-
-   </div>
-{{/each}}
+document.querySelectorAll("button.add").forEach(button => {
+  const itemId = button.getAttribute("item-id");
+  button.addEventListener("click", async () => {
+    const response = await fetch("/cart", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ itemId })
+    })
+    const cart = await response.json();
+    log(cart);
+  });
+});
 
   
 
