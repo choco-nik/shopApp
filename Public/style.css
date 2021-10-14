@@ -154,20 +154,17 @@ th:last-child{
 }
 
 /*styling for womens fashion */
-.card{
+.cards{
     margin:20px;
     text-align: center;
-   
+    display: flex;
+    flex-wrap: wrap;
 }
 
-.card-img-top{
-    width:100%;
-    height:100%;
-    object-fit: cover;
+.card{
+    margin: 20px;
+    text-align: center;
+    float: left;
+    width: 400px;
+    height: 650px; 
 }
-
-
-
-
-
-  
