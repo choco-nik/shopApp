@@ -57,7 +57,7 @@ app.get("/checkout", async (req, res) => {
 
 // Get for cart
 app.get("/cart.handlebars", async (req, res) => {
-    res.render("cart", { item });
+    res.render("cart", { Item });
 });
 
 // Get for website

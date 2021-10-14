@@ -1,19 +1,76 @@
-<h1>Cart</h1>
-{{#each items}}
- <div class="containerWom">
-   <div class="cards">
-         <div class="card" style="width: 18rem;">
-      <img src={{this.imageUrl}} class="card-img-top" alt="..." style="width:18rem">
-      <div class="card-body">
-          <h4 class="card-title">{{this.title}}</h4>
-          <p class="card-text">{{this.description}}</p>
-          <p class="card-price">£{{this.price}}</p>
-          <p class="card-number">{{this.count}} in cart</p>
+<h1>Bit-By-Bit</h1>
+
+<!--NAV BAR STATIC-->   
+<div class="vertical-menu">
+  <!-- home button logo --> 
+  <a href="/" id="homelink"><i class="fas fa-home" id="home-icon"></i></a>
+   <a href="groceries.handlebars" id="groceries-link">Groceries</a>
+  <a href="homeware.handlebars" id="homeware-link">Home</a>
+  <a href="sport.handlebars" id="sport-link">Sports</a>
+  <a href="womens.handlebars" id="womens-link">Women's Design</a>
+  <!--shopping cart logo // MAKE IT LINK TO THIS PAGE-->
+  <i class="fas fa-shopping-cart"></i>
+</div>
+
+<script>
+  const homeIcon = document.getElementById("home-icon");
+    const homeLink = document.querySelector("homelink");
+    link.addEventListener("click", () => {
+      await fetch("http://localhost:4000/home"),{
+      method: "GET"
+      }
+});
+ </script>  
+</div>
+<!--shopping cart page-->
+<div class="container cart">
+  <div class="small-container cart-page">
+    <table>
+      <tr>
+        <th>Product</th>
+        <th>Quantity</th>
+        <th>Subtotal</th>
+      </tr>
+      
+      <!--PLACEHOLDER ITEM-->
+<tr>
+  <td>
+    {{#each items}}
+    <div class="cart-info">
+        <img src={{this.imageUrl}} class="card-img-top" alt="..." style="width:5rem">
+      <div>
+        <h4 class="card-title">{{this.title}}</h4>
+        <small><p class="card-price">£{{this.price}}</p></small><br>
+        <small><p class="card-number">{{this.count}} in cart</p></small>
+        <a href="">Remove item</a>
       </div>
-    </div>  
+    </div>
+    {{/each}}
+    <td><input type="number" value={{this.count}}></td>
+    <td>£100</td>
+  </td>
+</tr>
+</table>
 
-   </div>
+<!--TOTAL PRICE SECTION -->
+<div class="total-price">
+  <table>
+    <tr>
+      <td>Total</td> <!--js sum function dom -->
+      <td>£XX</td>
+    </tr>
+  </table>
+</div>
+    
+    <!--ADD A DELETE BUTTON TO COMPLETELY REMOVE ITEMS FROM SHOPPING CART?
+ADD A BUY NOW BUTTON HERE TOO :) -->
+<div class="buttons">
+  <button class="btnAddRem"><span>Buy Now</span><i class="fas fa-shopping-basket"></i></button>
+  <br>
+  <br>
+  <button class="btnAddRem"><span>Delete Cart</span><i class="far fa-trash-alt"></i></button>
+</div>
+</div>  
+</div>
 
- </div> 
 
-{{/each}}
