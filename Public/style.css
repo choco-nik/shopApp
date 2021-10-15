@@ -168,3 +168,25 @@ th:last-child{
     width: 400px;
     height: 650px; 
 }
+
+.qty{
+    display: flex;
+    position: absolute;
+    right: 510px;
+    width: 50px;
+    height: 50px;
+    
+}
+
+.subtotal{
+    display: flex;
+    position: absolute;
+    right: 265px;
+    width: 50px;
+    height: 50px;
+    
+}
+
+.product{
+    text-align: start;
+}

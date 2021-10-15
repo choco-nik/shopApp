@@ -30,16 +30,26 @@
     {{#each items}}
     <div class="cart-info">
         <img src={{this.imageUrl}} class="card-img-top" alt="..." style="width:5rem">
-      <div>
+      <div class="product">
         <h4 class="card-title">{{this.title}}</h4>
-        <small><p class="card-price">£{{this.price}}</p></small><br>
-        <small><p class="card-number">{{this.count}} in cart</p></small>
-        <button class="remove btn">Remove item</button>
+        <small><p class="card-price">£{{this.price}}</p></small>
+        <!--<small><p class="card-number">{{this.count}} in cart</p></small>-->
+        <button class="remove btn">Remove</button>
+      </div>
+
+      <div class="btnSub">
+        <div class="qty">
+          <input type="number" value={{this.count}}>
+        </div>
+        
+        <div class="subtotal">
+          <h3>£100</h3>
+        </div>
+        
       </div>
     </div>
     {{/each}}
-    <td><input type="number" value={{this.count}}></td>
-    <td>£100</td>
+    
   </td>
 </tr>
 </table>
@@ -57,10 +67,10 @@
     <!--ADD A DELETE BUTTON TO COMPLETELY REMOVE ITEMS FROM SHOPPING CART?
 ADD A BUY NOW BUTTON HERE TOO :) -->
 <div class="buttons">
-  <button class="btnAddRem"><span>Buy Now</span><i class="fas fa-shopping-basket"></i></button>
+  <button class="btnAddRem"><span>Buy Now</span><br><i class="fas fa-shopping-basket"></i></button>
   <br>
   <br>
-  <button class="btnAddRem"><span>Delete Cart</span><i class="far fa-trash-alt"></i></button>
+  <button class="btnAddRem"><span>Delete Cart</span><br><i class="far fa-trash-alt"></i></button>
 </div>
 </div>  
 </div>
