@@ -34,7 +34,7 @@
         <h4 class="card-title">{{this.title}}</h4>
         <small><p class="card-price">£{{this.price}}</p></small>
         <!--<small><p class="card-number">{{this.count}} in cart</p></small>-->
-        <button item-id={{this.id}} class="remove btn">Remove</button>
+        <button item-id={{this.id}} class="remove-btn">Remove</button>
       </div>
 
       <div class="btnSub">
@@ -70,7 +70,6 @@ ADD A BUY NOW BUTTON HERE TOO :) -->
   <button class="btnAddRem"><span>Buy Now</span><br><i class="fas fa-shopping-basket"></i></button>
   <br>
   <br>
-  <button class="btnAddRem"><span>Delete Cart</span><br><i class="far fa-trash-alt"></i></button>
 </div>
 </div>  
 </div>
@@ -84,7 +83,7 @@ ADD A BUY NOW BUTTON HERE TOO :) -->
       }
 });
 // Remove button 
-let removeCartItemButtons = document.getElementsByClassName('remove btn')
+let removeCartItemButtons = document.getElementsByClassName('remove-btn')
 console.log(removeCartItemButtons)
 
 for (let i = 0; i < removeCartItemButtons.length; i++) {

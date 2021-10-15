@@ -190,3 +190,12 @@ th:last-child{
 .product{
     text-align: start;
 }
+
+/* Remove buttons */
+
+.remove-btn {
+    font-family:'Raleway','sans-serif';
+}
+.remove-btn:hover {
+    cursor: pointer;
+}
