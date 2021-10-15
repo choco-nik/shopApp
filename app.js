@@ -59,6 +59,10 @@ app.get("/checkout", async (req, res) => {
 app.get("/cart.handlebars", async (req, res) => {
     res.render("cart", { Item });
 });
+// Get for new checkout
+app.get("/checkout.handlebars", async (req, res) => {
+    res.render("checkout", { Item });
+});
 
 // Get for website
 app.get("/", async (req, res) => {
