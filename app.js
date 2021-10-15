@@ -42,7 +42,7 @@ app.post("/cart", (req, res) => {
     res.json(cart);
 });
 
-app.get("/checkout", async (req, res) => {
+app.get("/checkout.handlebars", async (req, res) => {
     const items = await Item.findAll({
         where: {
             id: {
@@ -60,9 +60,9 @@ app.get("/cart.handlebars", async (req, res) => {
     res.render("cart", { Item });
 });
 // Get for new checkout
-app.get("/checkout.handlebars", async (req, res) => {
-    res.render("checkout", { Item });
-});
+ //app.get("/checkout.handlebars", async (req, res) => {
+   // res.render("checkout", { Item });
+//}); 
 
 // Get for website
 app.get("/", async (req, res) => {
