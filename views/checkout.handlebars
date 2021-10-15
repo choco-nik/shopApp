@@ -12,15 +12,7 @@
   <i class="fas fa-shopping-cart"></i>
 </div>
 
-<script>
-  const homeIcon = document.getElementById("home-icon");
-    const homeLink = document.querySelector("homelink");
-    link.addEventListener("click", () => {
-      await fetch("http://localhost:4000/home"),{
-      method: "GET"
-      }
-});
- </script>  
+ 
 </div>
 <!--shopping cart page-->
 <div class="container cart">
@@ -42,7 +34,7 @@
         <h4 class="card-title">{{this.title}}</h4>
         <small><p class="card-price">£{{this.price}}</p></small><br>
         <small><p class="card-number">{{this.count}} in cart</p></small>
-        <a href="">Remove item</a>
+        <button class="remove btn">Remove item</button>
       </div>
     </div>
     {{/each}}
@@ -73,4 +65,23 @@ ADD A BUY NOW BUTTON HERE TOO :) -->
 </div>  
 </div>
 
+<script>
+  const homeIcon = document.getElementById("home-icon");
+    const homeLink = document.querySelector("homelink");
+    homelink.addEventListener("click", async () => {
+      await fetch("http://localhost:4000/home"),{
+      method: "GET"
+      }
+});
+// Remove button 
+let removeCartItemButtons = document.getElementsByClassName('remove btn')
+console.log(removeCartItemButtons)
 
+for (let i = 0; i < removeCartItemButtons.length; i++) {
+    let button= removeCartItemButtons[i]
+    button.addEventListener('click', function(event) {
+    let buttonClicked = event.target
+    buttonClicked.parentElement.parentElement.remove()
+  })
+}
+ </script> 
