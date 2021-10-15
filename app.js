@@ -29,7 +29,7 @@ app.set("views", path.join(__dirname, "views"));
 //const categories = await Category.findAll();
 //res.json(categories);
 //});
-
+// Add to cart 
 const cart = {};
 
 app.post("/cart", (req, res) => {
