@@ -34,7 +34,7 @@
         <h4 class="card-title">{{this.title}}</h4>
         <small><p class="card-price">£{{this.price}}</p></small>
         <!--<small><p class="card-number">{{this.count}} in cart</p></small>-->
-        <button class="remove btn">Remove</button>
+        <button item-id={{this.id}} class="remove btn">Remove</button>
       </div>
 
       <div class="btnSub">
@@ -43,7 +43,7 @@
         </div>
         
         <div class="subtotal">
-          <h3>£{{this.price}}</h3>
+          <h3>£{{this.totalPrice}}</h3>
         </div>
         
       </div>
@@ -59,7 +59,7 @@
   <table>
     <tr>
       <td>Total</td> <!--js sum function dom -->
-      <td>£XX</td>
+      <td>£{{total}}</td>
     </tr>
   </table>
 </div>
@@ -91,7 +91,9 @@ for (let i = 0; i < removeCartItemButtons.length; i++) {
     let button= removeCartItemButtons[i]
     button.addEventListener('click', function(event) {
     let buttonClicked = event.target
+    const itemId = buttonClicked.getAttribute("item-id");
     buttonClicked.parentElement.parentElement.remove()
+    fetch("/cart/" + itemId, {method: "DELETE"});
   })
 }
  </script> 

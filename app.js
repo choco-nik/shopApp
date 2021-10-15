@@ -29,7 +29,7 @@ app.set("views", path.join(__dirname, "views"));
 //const categories = await Category.findAll();
 //res.json(categories);
 //});
-// Add to cart 
+// Add to cart
 const cart = {};
 
 app.post("/cart", (req, res) => {
@@ -43,16 +43,34 @@ app.post("/cart", (req, res) => {
 });
 
 app.get("/checkout.handlebars", async (req, res) => {
-    const items = await Item.findAll({
-        where: {
-            id: {
-                [Op.or]: Object.keys(cart),
+    const cartItemIds = Object.keys(cart);
+    let items;
+    if (cartItemIds.length === 0) {
+        items = [];
+    } else {
+        items = await Item.findAll({
+            where: {
+                id: {
+                    [Op.or]: cartItemIds,
+                },
             },
-        },
+        });
+    }
+
+    let total = 0;
+    items.forEach((item) => {
+        item.count = cart[item.id];
+        item.totalPrice = item.count * item.price;
+        total += item.totalPrice;
     });
-    items.forEach((item) => (item.count = cart[item.id]));
+
     console.log(items);
-    res.render("checkout", { items });
+    res.render("checkout", { items, total });
+});
+
+app.delete("/cart/:itemId", (req, res) => {
+    delete cart[req.params.itemId];
+    res.sendStatus(200);
 });
 
 // Get for cart
@@ -60,9 +78,9 @@ app.get("/cart.handlebars", async (req, res) => {
     res.render("cart", { Item });
 });
 // Get for new checkout
- //app.get("/checkout.handlebars", async (req, res) => {
-   // res.render("checkout", { Item });
-//}); 
+//app.get("/checkout.handlebars", async (req, res) => {
+// res.render("checkout", { Item });
+//});
 
 // Get for website
 app.get("/", async (req, res) => {
